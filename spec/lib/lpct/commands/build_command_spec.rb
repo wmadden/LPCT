@@ -11,21 +11,17 @@ describe( LPCT::Commands::BuildCommand ) do
     let(:destinations_file_path) { 'destinations.xml' }
     let(:taxonomy_file_path)     { 'taxonomy.xml' }
     
-    let(:destinations_file_descriptor) { stub(:file) }
-    let(:taxonomy_file_descriptor)     { stub(:file) }
+    let(:destinations_file_descriptor) { stub(:destinations_file) }
+    let(:taxonomy_file_descriptor)     { stub(:taxonomy_file) }
     
     before do
       File.stub!(:open).and_return( destinations_file_descriptor, taxonomy_file_descriptor )
     end
     
-    subject { command.execute(args) }
+    subject { command.execute }
     
-    it "should parse the destinations file with Nokogiri" do
+    it "should parse the input files with Nokogiri" do
       Nokogiri.should_receive(:XML).with( destinations_file_descriptor )
-      subject
-    end
-    
-    it "should parse the taxonomy file" do
       Nokogiri.should_receive(:XML).with( taxonomy_file_descriptor )
       subject
     end
