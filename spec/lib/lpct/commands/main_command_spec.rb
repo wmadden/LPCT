@@ -1,9 +1,10 @@
-require "lpct/commands/app_command"
+require "lpct"
+require "lpct/commands/main_command"
 
-describe( LPCT::Commands::AppCommand ) do
+describe( LPCT::Commands::MainCommand ) do
   
   let(:args) { [] }
-  subject { LPCT::Commands::AppCommand.run("", args) }
+  subject { LPCT::Commands::MainCommand.run("", args) }
   
   before do
     LPCT::Commands::BuildCommand.stub(:run)

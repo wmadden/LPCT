@@ -1,4 +1,4 @@
 module LPCT
 end
 
-require_relative "lpct/commands"
+require "lpct/commands"
