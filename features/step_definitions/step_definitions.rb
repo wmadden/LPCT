@@ -10,8 +10,7 @@ When /^I invoke the processor without input files$/ do
   invoke!
 end
 
-When /^I invoke the processor$/ do
-  # Save XML files
+When /^I invoke the processor(?: with valid input files)?$/ do
   write_destinations_xml
   write_taxonomy_xml
   invoke! TEST_DESTINATION_FILE, TEST_TAXONOMY_FILE, TEST_OUTPUT_DIR
@@ -33,12 +32,12 @@ Then /^I should see "([^"]*)"$/ do |arg1|
   pending # express the regexp above with the code you wish you had
 end
 
-Then /^I should see a usage message$/ do
-  pending # express the regexp above with the code you wish you had
+Then /^I should see a usage message in the console$/ do
+  @console_output.should include("Usage")
 end
 
-When /^I invoke the processor with valid input files$/ do
-  pending # express the regexp above with the code you wish you had
+Then /^I shouldn't see any output in the console$/ do
+  @console_output.should be_empty
 end
 
 Then /^some output files should be created$/ do

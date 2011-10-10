@@ -6,8 +6,9 @@ Feature: Invocation
   
   Scenario: When I don't provide input files I should be told that I need to
     When I invoke the processor without input files
-    Then I should see a usage message
+    Then I should see a usage message in the console
   
   Scenario: When I provide valid inputs then I should get some HTML
     When I invoke the processor with valid input files
-    Then some output files should be created
+    Then I shouldn't see any output in the console
+     And some output files should be created
