@@ -9,4 +9,7 @@ group :test do
   gem 'guard'
   gem 'guard-cucumber'
   gem 'guard-rspec'
+  gem 'guard-bundler'
+  gem 'rb-fsevent'
+  gem 'growl_notify'
 end
