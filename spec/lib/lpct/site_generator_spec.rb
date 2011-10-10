@@ -21,10 +21,10 @@ describe( LPCT::SiteGenerator ) do
     
     subject { generator.parse_xml( destinations_doc, taxonomy_doc ) }
     
-    it "should create a hash of destination IDs to destinations" do
+    it "should create a hash of destination IDs to destination objects" do
       subject
-      generator.destinations["355064"].content.strip.should == "Some Destination"
-      generator.destinations["123456"].content.strip.should == "Some Other Destination"
+      generator.destinations["355064"][:xml].content.strip.should == "Some Destination"
+      generator.destinations["123456"][:xml].content.strip.should == "Some Other Destination"
     end
     
   end
