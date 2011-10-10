@@ -23,8 +23,8 @@ describe( LPCT::SiteGenerator ) do
     
     it "should create a hash of destination IDs to destinations" do
       subject
-      generator.destinations["355064"].content.should == "Some Destination"
-      generator.destinations["123456"].content.should == "Some Other Destination"
+      generator.destinations["355064"].content.strip.should == "Some Destination"
+      generator.destinations["123456"].content.strip.should == "Some Other Destination"
     end
     
   end

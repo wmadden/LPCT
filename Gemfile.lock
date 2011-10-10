@@ -1,8 +1,10 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    archive-tar-minitar (0.5.2)
     builder (3.0.0)
     clamp (0.2.3)
+    columnize (0.3.4)
     cucumber (1.1.0)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.2)
@@ -25,6 +27,8 @@ GEM
     guard-rspec (0.5.0)
       guard (>= 0.8.4)
     json (1.6.1)
+    linecache19 (0.5.12)
+      ruby_core_source (>= 0.1.4)
     nokogiri (1.5.0)
     rb-appscript (0.6.1)
     rb-fsevent (0.4.3.1)
@@ -36,6 +40,16 @@ GEM
     rspec-expectations (2.6.0)
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.6.0)
+    ruby-debug-base19 (0.11.25)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby_core_source (>= 0.1.4)
+    ruby-debug19 (0.11.6)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby-debug-base19 (>= 0.11.19)
+    ruby_core_source (0.1.5)
+      archive-tar-minitar (>= 0.5.2)
     term-ansicolor (1.0.6)
     thor (0.14.6)
 
@@ -53,3 +67,4 @@ DEPENDENCIES
   nokogiri
   rb-fsevent
   rspec
+  ruby-debug19
