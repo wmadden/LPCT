@@ -1,0 +1,2 @@
+class LPCT::SiteGenerator
+end
