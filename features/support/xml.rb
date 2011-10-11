@@ -4,8 +4,8 @@ TEST_DESTINATION_FILE = "test_destinations.xml"
 TEST_TAXONOMY_FILE    = "test_taxonomy.xml"
 
 Before do
-  @destinations = []
-  @taxonomy = []
+  @destinations = ""
+  @taxonomy = ""
 end
 
 After do
@@ -13,21 +13,13 @@ After do
 end
 
 def write_destinations_xml
-  builder = Nokogiri::XML::Builder.new do |xml|
-    xml.root {
-      xml.destinations {
-        @destinations.each do |destination|
-          xml.destination {
-            destination.each do |key, value|
-              xml.key value
-            end
-          }
-        end
-      }
-    }
+  File.open( TEST_DESTINATION_FILE, 'w' ) do |f|
+    f.write( @destinations )
   end
-  puts builder.to_xml
 end
 
 def write_taxonomy_xml
+  File.open( TEST_TAXONOMY_FILE, 'w' ) do |f|
+    f.write( @taxonomy )
+  end
 end
