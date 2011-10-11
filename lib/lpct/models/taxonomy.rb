@@ -33,7 +33,7 @@ class LPCT::Models::Taxonomy
   end
   
   def ancestors_of( node )
-    return [] if node[:parent] == nil
+    return [] if node.nil? || node[:parent] == nil
     [ node[:parent] ] + ancestors_of( node[:parent] )
   end
   

@@ -3,13 +3,14 @@ require "lpct/commands/build_command"
 
 describe( LPCT::Commands::BuildCommand ) do
   
-  let(:args) { [ destinations_file_path, taxonomy_file_path ] }
+  let(:args) { [ destinations_file_path, taxonomy_file_path, output_dir ] }
   let(:command) { LPCT::Commands::BuildCommand.new("") }
   
   describe('#run') do
     
     let(:destinations_file_path) { 'destinations.xml' }
     let(:taxonomy_file_path)     { 'taxonomy.xml' }
+    let(:output_dir)             { 'out' }
     let(:generator)              { mock( LPCT::SiteGenerator, :generate => nil ) }
     
     subject { command.parse(args); command.execute }

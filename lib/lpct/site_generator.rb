@@ -12,7 +12,7 @@ class LPCT::SiteGenerator
     @taxonomy = taxonomy
   end
   
-  def generate( destinations_file )
+  def generate( destinations_file, output_dir )
     
     # A Nokogiri Reader reads an XML file from a stream, so we don't need to load the
     # entire thing into memory.
@@ -22,7 +22,7 @@ class LPCT::SiteGenerator
       next unless node.name == "destination"
       
       destination = parse_destination_xml( node.outer_xml )
-      generate_destination_html_for destination
+      generate_destination_html_for( destination, output_dir )
       
       # Skip everything until the closing tag
       reader.read until node.name == "destination" && node.node_type == Nokogiri::XML::Reader::TYPE_END_ELEMENT
@@ -30,12 +30,16 @@ class LPCT::SiteGenerator
     
   end
   
-  def generate_destination_html_for( destination )
+  def generate_destination_html_for( destination, output_dir )
     destination_taxonomy_node = @taxonomy.nodes[ destination[:id] ]
-    ancestors = @taxonomy.ancestors_of( destination_taxonomy_node ).reverse
-    children = destination_taxonomy_node[:children]
+    if destination_taxonomy_node
+      ancestors = @taxonomy.ancestors_of( destination_taxonomy_node ).reverse
+      children = destination_taxonomy_node[:children]
+    else
+      ancestors = children = []
+    end
     
-    file = File.open( "out/#{ destination[:id] }.html", 'w' )
+    file = File.open( File.join( output_dir, "#{ destination[:id] }.html" ), 'w' )
     file.write( @template.result(binding) )
   end
   

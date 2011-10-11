@@ -26,8 +26,9 @@ describe( LPCT::SiteGenerator ) do
       ))
     end
     let(:destinations_file) { "some_file.xml" }
+    let(:output_dir)        { "out" }
     
-    subject { generator.generate( destinations_file ) }
+    subject { generator.generate( destinations_file, output_dir ) }
     
     before do
       generator.stub!(:parse_destination_xml)
