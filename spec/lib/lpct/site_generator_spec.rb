@@ -55,6 +55,4 @@ describe( LPCT::SiteGenerator ) do
     
   end
   
-  describe("#")
-  
 end
