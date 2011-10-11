@@ -3,26 +3,29 @@ require "lpct/commands/build_command"
 
 describe( LPCT::Commands::BuildCommand ) do
   
-  let(:args) { [] }
+  let(:args) { [ destinations_file_path, taxonomy_file_path ] }
   let(:command) { LPCT::Commands::BuildCommand.new("") }
   
   describe('#run') do
     
     let(:destinations_file_path) { 'destinations.xml' }
     let(:taxonomy_file_path)     { 'taxonomy.xml' }
+    let(:generator)              { mock( LPCT::SiteGenerator, :generate => nil ) }
     
-    let(:destinations_file_descriptor) { stub(:destinations_file) }
-    let(:taxonomy_file_descriptor)     { stub(:taxonomy_file) }
+    subject { command.parse(args); command.execute }
     
     before do
-      File.stub!(:open).and_return( destinations_file_descriptor, taxonomy_file_descriptor )
+      LPCT::Models::Taxonomy.stub!(:load)
+      LPCT::SiteGenerator.stub!(:new).and_return( generator )
     end
     
-    subject { command.execute }
+    it "should load the taxonomy" do
+      LPCT::Models::Taxonomy.should_receive(:load).with( taxonomy_file_path )
+      subject
+    end
     
-    it "should parse the input files with Nokogiri" do
-      Nokogiri.should_receive(:XML).with( destinations_file_descriptor )
-      Nokogiri.should_receive(:XML).with( taxonomy_file_descriptor )
+    it "should generate the site" do
+      generator.should_receive(:generate)
       subject
     end
     
